@@ -1,0 +1,116 @@
+import React from 'react';
+import { motion } from 'motion/react';
+import { MapPin, Clock, CalendarHeart } from 'lucide-react';
+
+export const HomecomingDetails: React.FC = () => {
+  return (
+    <section id="details" className="w-full py-24 relative overflow-hidden bg-[#022c22]">
+      {/* Background Image with Deep Emerald Overlay */}
+      <div
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url('/ChatGPT Image Aug 4, 2026, 02_12_09 AM.png')` }}
+      ></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-[#022c22] via-transparent to-[#022c22]"></div>
+
+      {/* Subtle Glow Effects */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-1/2 bg-[#D4AF37]/5 blur-[120px] rounded-full pointer-events-none"></div>
+
+      <div className="container px-4 md:px-6 mx-auto relative z-10 flex flex-col items-center">
+
+        {/* Section Header */}
+        <motion.div
+          className="flex flex-col items-center space-y-4 text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <h2 className="text-6xl md:text-7xl font-display text-[#D4AF37] drop-shadow-md" style={{ fontFamily: "'Great Vibes', cursive" }}>
+            Celebrations
+          </h2>
+          <div className="flex items-center space-x-4">
+            <div className="w-12 md:w-20 h-[1px] bg-gradient-to-r from-transparent to-[#D4AF37]/70"></div>
+            <p className="text-[10px] md:text-xs text-white/90 font-sans tracking-[0.4em] uppercase">
+              Join us in celebration
+            </p>
+            <div className="w-12 md:w-20 h-[1px] bg-gradient-to-l from-transparent to-[#D4AF37]/70"></div>
+          </div>
+        </motion.div>
+
+        <div className="flex flex-col lg:flex-row items-start justify-center gap-12 w-full max-w-6xl">
+          {/* Wedding Ceremony Card */}
+          <motion.div
+            className="relative w-full lg:w-1/2 max-w-lg bg-black/40 backdrop-blur-md rounded-t-[140px] rounded-b-[40px] border border-[#D4AF37]/40 shadow-[0_20px_50px_rgba(0,0,0,0.5)] p-8 md:p-14 flex flex-col items-center text-center overflow-hidden"
+            initial={{ opacity: 0, scale: 0.95, y: 40 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.2 }}
+          >
+            {/* Decorative Inner Border */}
+            <div className="absolute inset-4 border-[1px] border-[#D4AF37]/20 rounded-t-[125px] rounded-b-[25px] pointer-events-none"></div>
+
+            <h3 className="text-3xl md:text-4xl font-display text-[#D4AF37] mb-8" style={{ fontFamily: "'Great Vibes', cursive" }}>Wedding Ceremony</h3>
+
+            <CalendarHeart className="w-8 h-8 md:w-10 md:h-10 text-[#D4AF37] mb-4 opacity-90 drop-shadow-md" strokeWidth={1} />
+
+            <div className="space-y-2 mb-10">
+              <p className="text-[11px] md:text-xs text-white/70 tracking-[0.3em] uppercase">Saturday</p>
+              <p className="text-lg md:text-2xl font-serif text-[#D4AF37] tracking-widest uppercase">
+                5th December 2026
+              </p>
+            </div>
+
+            <div className="w-full max-w-sm mx-auto space-y-6 mb-12 flex-1">
+              <div className="flex items-center justify-between text-white border-b border-[#D4AF37]/20 pb-4">
+                <span className="font-sans text-sm md:text-base tracking-widest uppercase opacity-90">Ceremony</span>
+                <span className="font-serif text-[#D4AF37] text-lg md:text-xl">10:30 AM Onwards</span>
+              </div>
+            </div>
+
+            <div className="flex flex-col items-center space-y-3 mt-auto">
+              <MapPin className="w-6 h-6 md:w-8 md:h-8 text-[#D4AF37] mb-2 opacity-90" strokeWidth={1} />
+              <p className="text-lg md:text-xl font-serif text-white tracking-wide">St. Antony's Church</p>
+              <p className="text-[11px] md:text-sm text-white/60 tracking-widest uppercase">Kongodamulla, Katana</p>
+            </div>
+          </motion.div>
+
+          {/* Home Coming Card */}
+          <motion.div
+            className="relative w-full lg:w-1/2 max-w-lg bg-black/40 backdrop-blur-md rounded-t-[140px] rounded-b-[40px] border border-[#D4AF37]/40 shadow-[0_20px_50px_rgba(0,0,0,0.5)] p-8 md:p-14 flex flex-col items-center text-center overflow-hidden"
+            initial={{ opacity: 0, scale: 0.95, y: 40 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.4 }}
+          >
+            {/* Decorative Inner Border */}
+            <div className="absolute inset-4 border-[1px] border-[#D4AF37]/20 rounded-t-[125px] rounded-b-[25px] pointer-events-none"></div>
+
+            <h3 className="text-3xl md:text-4xl font-display text-[#D4AF37] mb-8" style={{ fontFamily: "'Great Vibes', cursive" }}>Home Coming</h3>
+
+            <CalendarHeart className="w-8 h-8 md:w-10 md:h-10 text-[#D4AF37] mb-4 opacity-90 drop-shadow-md" strokeWidth={1} />
+
+            <div className="space-y-2 mb-10">
+              <p className="text-[11px] md:text-xs text-white/70 tracking-[0.3em] uppercase">Sunday</p>
+              <p className="text-lg md:text-2xl font-serif text-[#D4AF37] tracking-widest uppercase">
+                6th December 2026
+              </p>
+            </div>
+
+            <div className="w-full max-w-sm mx-auto space-y-6 mb-12 flex-1">
+              <div className="flex items-center justify-between text-white border-b border-[#D4AF37]/20 pb-4">
+                <span className="font-sans text-sm md:text-base tracking-widest uppercase opacity-90">Celebration</span>
+                <span className="font-serif text-[#D4AF37] text-lg md:text-xl text-right">7:00 PM - 11:30 PM</span>
+              </div>
+            </div>
+
+            <div className="flex flex-col items-center space-y-3 mt-auto">
+              <MapPin className="w-6 h-6 md:w-8 md:h-8 text-[#D4AF37] mb-2 opacity-90" strokeWidth={1} />
+              <p className="text-lg md:text-xl font-serif text-white tracking-wide">Dhanamuthu Hotel & Banquets</p>
+              <p className="text-[11px] md:text-sm text-white/60 tracking-widest uppercase">Dagonna (Kimbulapitiya Rd, Negombo)</p>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  );
+};
