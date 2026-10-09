@@ -6,6 +6,7 @@ import { motion } from 'motion/react';
 export const RSVPForm: React.FC = () => {
   const [name, setName] = useState('');
   const [attending, setAttending] = useState('');
+  const [guestCount, setGuestCount] = useState('1');
   const [message, setMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -25,11 +26,16 @@ export const RSVPForm: React.FC = () => {
     setIsSubmitting(true);
     setError(null);
     try {
+      const searchParams = new URLSearchParams(window.location.search);
+      const inviteType = searchParams.get('invite') || 'both';
+
       const status = attending === 'yes' ? 'Accepts' : 'Declines';
       await submitToGoogleSheet('rsvp', { 
         name, 
         status, 
+        guestCount: attending === 'yes' ? guestCount : '0',
         message,
+        inviteType,
         submittedAt: new Date().toISOString() 
       });
       setSubmitted(true);
@@ -128,6 +134,35 @@ export const RSVPForm: React.FC = () => {
                     </div>
                   </div>
                 </div>
+
+                {attending === 'yes' && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                  >
+                    <label className="block text-[#D4AF37] text-xs font-semibold uppercase tracking-[0.2em] mb-3">Number of Guests (including yourself)</label>
+                    <div className="relative">
+                      <select 
+                        required={attending === 'yes'}
+                        className="w-full bg-black/60 text-white border border-[#D4AF37]/40 rounded-xl px-5 py-4 font-sans appearance-none pr-10 focus:ring-1 focus:ring-[#D4AF37] focus:border-[#D4AF37] outline-none transition-all"
+                        name="guestCount" 
+                        value={guestCount}
+                        onChange={(e) => setGuestCount(e.target.value)}
+                        disabled={isSubmitting}
+                      >
+                        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(num => (
+                          <option key={num} value={num} className="bg-[#064e3b] text-white">
+                            {num} {num === 1 ? 'Guest (Just me)' : 'Guests'}
+                          </option>
+                        ))}
+                      </select>
+                      <svg className="w-5 h-5 absolute right-4 top-1/2 transform -translate-y-1/2 text-[#D4AF37] pointer-events-none" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7"></path>
+                      </svg>
+                    </div>
+                  </motion.div>
+                )}
 
                 <div>
                   <label className="block text-[#D4AF37] text-xs font-semibold uppercase tracking-[0.2em] mb-3">Message (Optional)</label>

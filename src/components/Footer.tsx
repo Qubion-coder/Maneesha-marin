@@ -2,6 +2,20 @@ import React from 'react';
 import { Heart } from 'lucide-react';
 
 export const Footer: React.FC = () => {
+  const searchParams = new URLSearchParams(window.location.search);
+  const inviteType = searchParams.get('invite') || 'both';
+
+  let dateText = "5th & 6th December 2026";
+  let locationText = "Katana & Negombo";
+
+  if (inviteType === 'wedding') {
+    dateText = "5th December 2026";
+    locationText = "Katana";
+  } else if (inviteType === 'homecoming') {
+    dateText = "6th December 2026";
+    locationText = "Negombo";
+  }
+
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -45,8 +59,8 @@ export const Footer: React.FC = () => {
             <h3 className="text-sm font-sans font-semibold text-[#D4AF37] uppercase tracking-[0.2em]">Wedding Details</h3>
             <div className="w-8 h-[1px] bg-[#D4AF37]/40 mb-4"></div>
             <div className="space-y-3 text-white/70 font-sans tracking-[0.1em] text-sm">
-              <p>5th &amp; 6th December 2026</p>
-              <p>Katana &amp; Negombo</p>
+              <p>{dateText}</p>
+              <p>{locationText}</p>
               <p className="text-[#D4AF37] italic mt-4 font-serif tracking-widest text-xs opacity-80">#Maneesha&amp;Marin2026</p>
             </div>
           </div>

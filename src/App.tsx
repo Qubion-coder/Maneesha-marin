@@ -29,7 +29,12 @@ export default function App() {
   const [isMusicPlaying, setIsMusicPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  const weddingDate = new Date('2026-12-05T10:30:00');
+  const searchParams = new URLSearchParams(window.location.search);
+  const inviteType = searchParams.get('invite') || 'both';
+
+  const weddingDate = inviteType === 'homecoming' 
+    ? new Date('2026-12-06T19:00:00') 
+    : new Date('2026-12-05T10:30:00');
 
   const startMusic = () => {
     if (audioRef.current && !isMusicPlaying) {
@@ -75,7 +80,7 @@ export default function App() {
       {/* Background Music */}
       <audio
         ref={audioRef}
-        src="/Until I Found You - Stephen Sanchez - Cover (Violin).mp3"
+        src="/paulyudin-wedding-485932.mp3"
         loop
         autoPlay
         onPlay={() => setIsMusicPlaying(true)}

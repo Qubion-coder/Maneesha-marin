@@ -6,10 +6,38 @@ export const HeroContent: React.FC = () => {
   const searchParams = new URLSearchParams(window.location.search);
   const prefix = searchParams.get('prefix');
   const name = searchParams.get('name');
+  const inviteType = searchParams.get('invite') || 'both';
 
-  const guestNameString = (prefix || name) 
-    ? `${prefix ? prefix + ' ' : ''}${name || ''}`.trim() 
-    : '';
+  let dateText = "December 5 & 6, 2026";
+  if (inviteType === 'wedding') {
+    dateText = "Saturday, December 5, 2026";
+  } else if (inviteType === 'homecoming') {
+    dateText = "Sunday, December 6, 2026";
+  }
+
+  const getDisplayName = (p: string, n: string) => {
+    const trimmedName = n.trim();
+    if (!trimmedName) return '';
+    switch (p) {
+      case 'Mr.': return `Mr. ${trimmedName}`;
+      case 'Mrs.': return `Mrs. ${trimmedName}`;
+      case 'Miss': return `Miss ${trimmedName}`;
+      case 'Mr. & Mrs.': return `Mr. & Mrs. ${trimmedName}`;
+      case 'Family': return `${trimmedName} and Family`;
+      case 'Dear': return trimmedName;
+      default: return p ? `${p} ${trimmedName}` : trimmedName;
+    }
+  };
+
+  let guestNameString = '';
+  const pathname = window.location.pathname.slice(1);
+  
+  if (pathname && pathname !== 'admin') {
+    const decodedName = decodeURIComponent(pathname);
+    guestNameString = getDisplayName(prefix || '', decodedName);
+  } else if (prefix || name) {
+    guestNameString = getDisplayName(prefix || '', name || '');
+  }
 
   return (
     <section aria-label="Hero" className="relative w-full h-[100dvh] overflow-hidden flex items-center justify-center">
@@ -74,7 +102,7 @@ export const HeroContent: React.FC = () => {
           </h1>
           
           <p className="text-sm sm:text-lg md:text-xl font-sans tracking-[0.1em] sm:tracking-[0.15em] text-white uppercase mt-12 sm:mt-16 drop-shadow-md">
-            Saturday, December 5, 2026
+            {dateText}
           </p>
         </motion.div>
 

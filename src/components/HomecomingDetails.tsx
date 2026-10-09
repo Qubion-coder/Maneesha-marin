@@ -3,6 +3,9 @@ import { motion } from 'motion/react';
 import { MapPin, Clock, CalendarHeart } from 'lucide-react';
 
 export const HomecomingDetails: React.FC = () => {
+  const searchParams = new URLSearchParams(window.location.search);
+  const inviteType = searchParams.get('invite') || 'both';
+
   return (
     <section id="details" className="w-full py-24 relative overflow-hidden bg-[#022c22]">
       {/* Background Image with Deep Emerald Overlay */}
@@ -39,6 +42,7 @@ export const HomecomingDetails: React.FC = () => {
 
         <div className="flex flex-col lg:flex-row items-start justify-center gap-12 w-full max-w-6xl">
           {/* Wedding Ceremony Card */}
+          {(inviteType === 'both' || inviteType === 'wedding') && (
           <motion.div
             className="relative w-full lg:w-1/2 max-w-lg bg-black/40 backdrop-blur-md rounded-t-[140px] rounded-b-[40px] border border-[#D4AF37]/40 shadow-[0_20px_50px_rgba(0,0,0,0.5)] p-8 md:p-14 flex flex-col items-center text-center overflow-hidden"
             initial={{ opacity: 0, scale: 0.95, y: 40 }}
@@ -70,11 +74,21 @@ export const HomecomingDetails: React.FC = () => {
             <div className="flex flex-col items-center space-y-3 mt-auto">
               <MapPin className="w-6 h-6 md:w-8 md:h-8 text-[#D4AF37] mb-2 opacity-90" strokeWidth={1} />
               <p className="text-lg md:text-xl font-serif text-white tracking-wide">St. Antony's Church</p>
-              <p className="text-[11px] md:text-sm text-white/60 tracking-widest uppercase">Kongodamulla, Katana</p>
+              <p className="text-[11px] md:text-sm text-white/60 tracking-widest uppercase mb-2">Kongodamulla, Katana</p>
+              <a 
+                href="https://maps.app.goo.gl/g38YBCw1Zr66U2iQ8" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center space-x-2 px-6 py-2 md:px-8 md:py-2.5 mt-2 bg-transparent border border-[#D4AF37]/50 hover:bg-[#D4AF37]/10 hover:border-[#D4AF37] rounded-full text-[#D4AF37] transition-all duration-300 group"
+              >
+                <span className="font-sans text-[10px] md:text-xs tracking-[0.2em] uppercase">Live Location</span>
+              </a>
             </div>
           </motion.div>
+          )}
 
           {/* Home Coming Card */}
+          {(inviteType === 'both' || inviteType === 'homecoming') && (
           <motion.div
             className="relative w-full lg:w-1/2 max-w-lg bg-black/40 backdrop-blur-md rounded-t-[140px] rounded-b-[40px] border border-[#D4AF37]/40 shadow-[0_20px_50px_rgba(0,0,0,0.5)] p-8 md:p-14 flex flex-col items-center text-center overflow-hidden"
             initial={{ opacity: 0, scale: 0.95, y: 40 }}
@@ -106,9 +120,18 @@ export const HomecomingDetails: React.FC = () => {
             <div className="flex flex-col items-center space-y-3 mt-auto">
               <MapPin className="w-6 h-6 md:w-8 md:h-8 text-[#D4AF37] mb-2 opacity-90" strokeWidth={1} />
               <p className="text-lg md:text-xl font-serif text-white tracking-wide">Dhanamuthu Hotel & Banquets</p>
-              <p className="text-[11px] md:text-sm text-white/60 tracking-widest uppercase">Dagonna (Kimbulapitiya Rd, Negombo)</p>
+              <p className="text-[11px] md:text-sm text-white/60 tracking-widest uppercase mb-2">Dagonna (Kimbulapitiya Rd, Negombo)</p>
+              <a 
+                href="https://maps.app.goo.gl/jtgACFm6DHqFJq7o7" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center space-x-2 px-6 py-2 md:px-8 md:py-2.5 mt-2 bg-transparent border border-[#D4AF37]/50 hover:bg-[#D4AF37]/10 hover:border-[#D4AF37] rounded-full text-[#D4AF37] transition-all duration-300 group"
+              >
+                <span className="font-sans text-[10px] md:text-xs tracking-[0.2em] uppercase">Live Location</span>
+              </a>
             </div>
           </motion.div>
+          )}
         </div>
       </div>
     </section>
